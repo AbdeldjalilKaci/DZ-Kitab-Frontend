@@ -1,9 +1,8 @@
 FROM node:20-alpine AS build
 WORKDIR /app
 COPY package*.json ./
-RUN npm ci
+RUN npm install  # Changed from npm ci
 COPY . .
-# Hardcode the local URL for now
 ENV VITE_API_BASE_URL=http://127.0.0.1:8000
 RUN npm run build
 
