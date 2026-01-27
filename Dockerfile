@@ -7,21 +7,19 @@ COPY . .
 ENV VITE_API_BASE_URL=http://127.0.0.1:8000
 RUN npm run build
 
-# Stage 2: Production - Serve static files
+# Stage 2: Production - Use vite preview
 FROM node:20-alpine
 WORKDIR /app
 
-# Copy only package.json to install serve
+# Copy package files and install dependencies
 COPY package*.json ./
+RUN npm install --only=production
 
-# Install serve as a regular dependency (not global)
-RUN npm install serve
-
-# Copy built files from build stage
+# Copy built files
 COPY --from=build /app/dist ./dist
 
-# Expose port (Railway will assign its own port)
+# Expose port
 EXPOSE 3000
 
-# Start the server using npx to avoid global install issues
-CMD ["npx", "serve", "-s", "dist", "-l", "3000"]
+# Use vite preview instead of serve
+CMD ["npm", "run", "preview", "--", "--port", "3000", "--host"]
