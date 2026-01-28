@@ -87,11 +87,9 @@ const BookDetails = () => {
   if (loading) {
     return (
       <div className="book-details-page">
-        {/* <Header /> */}
         <div className="book-details-container">
           <p>Loading book details...</p>
         </div>
-        {/* <Footer /> */}
       </div>
     );
   }
@@ -100,14 +98,12 @@ const BookDetails = () => {
   if (!book) {
     return (
       <div className="book-details-page">
-        <Header />
         <div className="book-details-container">
           <p>Book not found</p>
           <Link to="/catalog" className="back-link">
             ← Back to Catalogue
           </Link>
         </div>
-        <Footer />
       </div>
     );
   }
