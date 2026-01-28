@@ -87,11 +87,11 @@ const BookDetails = () => {
   if (loading) {
     return (
       <div className="book-details-page">
-        <Header />
+        {/* <Header /> */}
         <div className="book-details-container">
           <p>Loading book details...</p>
         </div>
-        <Footer />
+        {/* <Footer /> */}
       </div>
     );
   }
