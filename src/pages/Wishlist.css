@@ -1,12 +1,12 @@
 .wishlist-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 40px 20px;
+  padding: 2rem var(--container-padding);
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: white;
-  font-family: sans-serif;
+  background-color: var(--white);
+  font-family: 'Poppins', sans-serif;
 }
 
 .wishlist-top-section {
@@ -55,7 +55,8 @@
 
 /* Left Spacer in Header (matches Delete + Image width) */
 .wishlist-col-spacer-left {
-  width: 130px; /* 50px delete + 80px image */
+  width: 130px;
+  /* 50px delete + 80px image */
   flex-shrink: 0;
 }
 
@@ -154,6 +155,57 @@
   white-space: nowrap;
 }
 
-.wishlist-buy-btn:hover {
-  opacity: 0.9;
+@media (max-width: 768px) {
+  .wishlist-header-row {
+    display: none;
+  }
+
+  .wishlist-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.5rem;
+    position: relative;
+    border-radius: 12px;
+    background-color: #f9f9f9;
+    margin-bottom: 1rem;
+    border: 1px solid #eee;
+  }
+
+  .wishlist-col-spacer-left,
+  .wishlist-col-image,
+  .wishlist-col-delete {
+    width: auto;
+    position: static;
+  }
+
+  .wishlist-col-delete {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+  }
+
+  .wishlist-col-image {
+    width: 80px;
+    height: 80px;
+  }
+
+  .wishlist-book-img {
+    width: 100%;
+    height: 100%;
+  }
+
+  .wishlist-col-name,
+  .wishlist-col-price,
+  .wishlist-col-status,
+  .wishlist-col-action {
+    flex: none;
+    width: 100%;
+    text-align: left;
+    padding: 0;
+  }
+
+  .wishlist-title {
+    font-size: 1.8rem;
+  }
 }

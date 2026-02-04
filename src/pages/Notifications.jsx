@@ -58,7 +58,7 @@ const Notifications = () => {
 
     return (
         <div className="notifications-page">
-            <div className="container mx-auto px-4 py-8 min-h-[60vh]">
+            <div className="mx-auto py-8 min-h-[60vh]" style={{ padding: '0 var(--container-padding)' }}>
                 <div className="flex justify-between items-center mb-6">
                     <h1 className="text-2xl font-bold">Notifications</h1>
                     {notifications.some(n => !n.is_read) && (

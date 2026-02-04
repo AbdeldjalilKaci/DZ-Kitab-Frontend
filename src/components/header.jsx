@@ -14,7 +14,8 @@ const Header = () => {
   const [user, setUser] = useState(null);
   const [isbnSearch, setIsbnSearch] = useState('');
   const [showDropdown, setShowDropdown] = useState(false);
-  const [unreadCount, setUnreadCount] = useState(0); // NEW: Unread count state
+  const [unreadCount, setUnreadCount] = useState(0);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false); // NEW: Mobile menu state
 
   const fetchUnreadCount = async () => {
     if (!token) return;
@@ -102,17 +103,25 @@ const Header = () => {
 
 
 
-      <div className="links">
-        <Link to="/">Home</Link>
-        <Link to="/catalog">Books</Link>
-        <a href="#about">About us</a>
-        <a href="#contact">Contact us</a>
+      <button
+        className="mobile-menu-toggle"
+        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        aria-label="Toggle Navigation"
+      >
+        {isMobileMenuOpen ? "✕" : "☰"}
+      </button>
+
+      <div className={`links ${isMobileMenuOpen ? 'mobile-open' : ''}`}>
+        <Link to="/" onClick={() => setIsMobileMenuOpen(false)}>Home</Link>
+        <Link to="/catalog" onClick={() => setIsMobileMenuOpen(false)}>Books</Link>
+        <a href="#about" onClick={() => setIsMobileMenuOpen(false)}>About us</a>
+        <a href="#contact" onClick={() => setIsMobileMenuOpen(false)}>Contact us</a>
       </div>
-      <div className="buttons">
-        <button onClick={nagigate_to_login_page} className="login-button">
+      <div className={`buttons ${isMobileMenuOpen ? 'mobile-open' : ''}`}>
+        <button onClick={() => { nagigate_to_login_page(); setIsMobileMenuOpen(false); }} className="login-button">
           Login
         </button>
-        <button onClick={nagigate_to_register_page} className="register-button">
+        <button onClick={() => { nagigate_to_register_page(); setIsMobileMenuOpen(false); }} className="register-button">
           Register
         </button>
       </div>
@@ -132,19 +141,25 @@ const Header = () => {
 
 
 
-      <div className="links">
-        <Link to="/">Home</Link>
-        <Link to="/catalog">Books</Link>
-        <Link to="/addannounce">Add Announcement</Link>
-        {/* Admin Link if role is admin */}
+      <button
+        className="mobile-menu-toggle"
+        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        aria-label="Toggle Navigation"
+      >
+        {isMobileMenuOpen ? "✕" : "☰"}
+      </button>
+
+      <div className={`links ${isMobileMenuOpen ? 'mobile-open' : ''}`}>
+        <Link to="/" onClick={() => setIsMobileMenuOpen(false)}>Home</Link>
+        <Link to="/catalog" onClick={() => setIsMobileMenuOpen(false)}>Books</Link>
+        <Link to="/addannounce" onClick={() => setIsMobileMenuOpen(false)}>Add Announcement</Link>
         {user && user.role === 'admin' && (
-          <Link to="/DashboardAdmin" style={{ color: 'red', fontWeight: 'bold' }}>Admin</Link>
+          <Link to="/DashboardAdmin" onClick={() => setIsMobileMenuOpen(false)} style={{ color: 'red', fontWeight: 'bold' }}>Admin</Link>
         )}
-        {/* User Dashboard Link */}
-        <Link to="/dashboard">Dashboard</Link>
+        <Link to="/dashboard" onClick={() => setIsMobileMenuOpen(false)}>Dashboard</Link>
       </div>
 
-      <div className="user-links">
+      <div className={`user-links ${isMobileMenuOpen ? 'mobile-open' : ''}`}>
         <div className="icons-link">
           <Link to="/catalog">
             <CiSearch className="icon" />
