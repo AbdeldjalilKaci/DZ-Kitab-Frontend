@@ -353,6 +353,7 @@ const Listing = () => {
             <div className="loading">
               <div class="loader"></div>
             </div>
+
           ) : currentBooks.length === 0 ? (
             <div className="no-results">
               <p>No books found matching your filters.</p>
